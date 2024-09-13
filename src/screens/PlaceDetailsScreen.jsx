@@ -96,7 +96,9 @@ const PlaceDetailsScreen = () => {
           marginLeft: "100px",
         }}
       >
-        {userLoggedIn._id === place.creator ? (
+        {state.isLoading ? (
+          <div>Loading...</div>
+        ) : userLoggedIn._id === place.creator ? (
           <>
             <Button
               onClick={() => navigate(`/update/${id}`)}
