@@ -50,7 +50,7 @@ function Auth() {
     setSignIn((prev) => !prev);
   };
 
-  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+  const backendAPI = import.meta.env.VITE_API_URL;
 
   const submitInputHandler = async (e) => {
     e.preventDefault();
