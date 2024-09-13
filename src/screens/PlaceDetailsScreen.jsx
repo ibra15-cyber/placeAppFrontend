@@ -22,6 +22,8 @@ const PlaceDetailsScreen = () => {
     dispatch({ type: "FETCH_DATA" });
     const { data } = await axios.get(`${backendAPI}/api/places/${id}/`);
     // console.log(data);
+    dispatch({ type: "FETCH_END" });
+
     setPlace(data);
   };
 

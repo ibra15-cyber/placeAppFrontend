@@ -11,7 +11,7 @@ import { Store } from "../../StoreProvider";
 const libraries = ["places"];
 
 const MapScreen = () => {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { userLoggedIn } = state;
   const { placeInfo } = state;
 
@@ -32,10 +32,13 @@ const MapScreen = () => {
 
   const fetchGoogleApiKey = async () => {
     try {
+      dispatch({ type: "FETCH_DATA" });
+
       const { data } = await axios.get(`${backendAPI}/api/keys/google`, {
         headers: { Authorization: "Bearer " + userLoggedIn.token },
       });
       setGoogleApiKey(data.key);
+      dispatch({ type: "FETCH_END" });
     } catch (err) {
       console.log(err);
     }
