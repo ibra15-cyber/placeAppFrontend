@@ -19,6 +19,8 @@ const PlaceDetailsScreen = () => {
   const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
   const fetchPlace = async () => {
+    dispatch({ type: "FETCH_DATA" });
+
     const { data } = await axios.get(`${backendAPI}/api/places/${id}/`);
     // console.log(data);
     setPlace(data);
