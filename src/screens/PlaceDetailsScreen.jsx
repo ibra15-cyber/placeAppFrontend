@@ -29,6 +29,7 @@ const PlaceDetailsScreen = () => {
   }, []);
 
   const deleteHandler = async () => {
+    dispatch({ type: "FETCH_DATA" });
     await axios.delete(`${backendAPI}/api/places/${id}/`);
     navigate("/");
   };
