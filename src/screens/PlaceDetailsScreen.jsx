@@ -36,13 +36,14 @@ const PlaceDetailsScreen = () => {
     navigate("/");
   };
 
+  const handleMapAddress = () => {
+    navigate("/map");
+  };
+
   if (!place) {
     return <div>Loading...</div>;
   }
 
-  const handleMapAddress = () => {
-    navigate("/map");
-  };
   return (
     <>
       <div
