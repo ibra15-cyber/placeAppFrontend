@@ -8,9 +8,11 @@ function Profile() {
     fetchUser();
   }, []);
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get(`/api/users/`);
+      const { data } = await axios.get(`${backendAPI}/api/users/`);
       console.log(data);
       setUsers(data);
     } catch (err) {

@@ -36,9 +36,11 @@ const AddPlaceScreen = () => {
     }));
   };
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post(`/api/places/`, formData);
+    const { data } = await axios.post(`${backendAPI}/api/places/`, formData);
 
     //get the send back data and set to localStorage
     dispatch({ type: "GET_CREATED_PLACE_DETAIL", payload: data });
@@ -80,9 +82,13 @@ const AddPlaceScreen = () => {
     imageData.append("file", file);
 
     try {
-      const { data } = await axios.post("/api/upload/ ", imageData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const { data } = await axios.post(
+        `${backendAPI}/api/upload/ `,
+        imageData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       console.log(data.secure_url);
 
       setFormData((prev) => ({

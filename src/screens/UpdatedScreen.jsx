@@ -22,10 +22,12 @@ function UpdatedScreen() {
 
   // console.log(title);
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   useEffect(() => {
     const getPlace = async () => {
       try {
-        const { data } = await axios.get(`/api/places/${id}`);
+        const { data } = await axios.get(`${backendAPI}/api/places/${id}`);
         setPlace(data);
         // console.log(data);
         setFormData({ title: data.title, description: data.description });
@@ -50,7 +52,7 @@ function UpdatedScreen() {
     e.preventDefault();
 
     try {
-      await axios.post(`/api/places/${id}`, formData);
+      await axios.post(`${backendAPI}/api/places/${id}`, formData);
       setFormData({ title: "", description: "" });
 
       navigate("/");

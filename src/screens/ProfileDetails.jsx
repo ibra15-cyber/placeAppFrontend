@@ -11,9 +11,11 @@ function ProfileDetails() {
     fetchUserCreatedPlace();
   }, []);
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const fetchUserCreatedPlace = async () => {
     try {
-      const { data } = await axios.get(`/api/places/user/${id}`);
+      const { data } = await axios.get(`${backendAPI}/api/places/user/${id}`);
       console.log(data);
       setUserPlace(data);
     } catch (err) {

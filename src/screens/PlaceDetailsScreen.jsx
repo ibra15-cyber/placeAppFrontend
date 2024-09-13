@@ -16,8 +16,10 @@ const PlaceDetailsScreen = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const fetchPlace = async () => {
-    const { data } = await axios.get(`/api/places/${id}/`);
+    const { data } = await axios.get(`${backendAPI}/api/places/${id}/`);
     // console.log(data);
     setPlace(data);
   };
@@ -27,7 +29,7 @@ const PlaceDetailsScreen = () => {
   }, []);
 
   const deleteHandler = async () => {
-    await axios.delete(`/api/places/${id}/`);
+    await axios.delete(`${backendAPI}/api/places/${id}/`);
     navigate("/");
   };
 

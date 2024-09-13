@@ -69,8 +69,10 @@ function MapScreen() {
     }
   };
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const fetchGoogleApiKey = async () => {
-    const { data } = await axios.get("/api/keys/google", {
+    const { data } = await axios.get(`${backendAPI}/api/keys/google`, {
       headers: { Authorization: "Bearer " + userLoggedIn.token },
     });
     setGoogleApiKey(data.key);

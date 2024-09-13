@@ -50,11 +50,16 @@ function Auth() {
     setSignIn((prev) => !prev);
   };
 
+  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const submitInputHandler = async (e) => {
     e.preventDefault();
     try {
       if (isSignIn) {
-        const { data } = await axios.post(`/api/users/signin`, signInFormData);
+        const { data } = await axios.post(
+          `${backendAPI}/api/users/signin`,
+          signInFormData
+        );
         setSignInFormData({
           email: "",
           password: "",
@@ -63,7 +68,10 @@ function Auth() {
         localStorage.setItem("userLoggedIn", JSON.stringify(data));
         navigate("/");
       } else {
-        const { data } = await axios.post(`/api/users/signup`, signUpFormData);
+        const { data } = await axios.post(
+          `${backendAPI}/api/users/signup`,
+          signUpFormData
+        );
         setSignUpFormData({
           name: "",
           email: "",
@@ -90,11 +98,15 @@ function Auth() {
     formDataBody.append("file", file);
 
     try {
-      const { data } = await axios.post("/api/upload", formDataBody, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const { data } = await axios.post(
+        `${backendAPI}/api/upload`,
+        formDataBody,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       setImage(data.secure_url);
 
