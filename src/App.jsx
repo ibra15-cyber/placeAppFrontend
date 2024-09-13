@@ -44,7 +44,7 @@ function App() {
               />
               <Route path="/profile/:id" element={<ProfileDetails />} />
               <Route path="/auth" element={<Auth />} />
-              <Route path="/map/" element={<MapScreen />} />
+              <Route path="/map" element={<MapScreen />} />
               <Route path="/test" element={<Auth2 />} />
             </Routes>
             <Footer style={{ position: "fixed", bottom: 0 }} />
