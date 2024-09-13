@@ -20,7 +20,6 @@ const PlaceDetailsScreen = () => {
 
   const fetchPlace = async () => {
     dispatch({ type: "FETCH_DATA" });
-
     const { data } = await axios.get(`${backendAPI}/api/places/${id}/`);
     // console.log(data);
     setPlace(data);
@@ -33,6 +32,8 @@ const PlaceDetailsScreen = () => {
   const deleteHandler = async () => {
     dispatch({ type: "FETCH_DATA" });
     await axios.delete(`${backendAPI}/api/places/${id}/`);
+    dispatch({ type: "FETCH_END" });
+
     navigate("/");
   };
 
@@ -100,7 +101,9 @@ const PlaceDetailsScreen = () => {
           marginLeft: "100px",
         }}
       >
-        {userLoggedIn._id === place.creator ? (
+        {state.isLoading ? (
+          <div>Loading...</div>
+        ) : userLoggedIn._id === place.creator ? (
           <>
             <Button
               onClick={() => navigate(`/update/${id}`)}

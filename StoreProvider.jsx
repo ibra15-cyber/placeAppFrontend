@@ -9,6 +9,12 @@ const reducer = (state, action) => {
         ...state,
         isLoading: true,
       };
+
+    case "FETCH_END":
+      return {
+        ...state,
+        isLoading: false,
+      };
     case "LOG_IN":
       return {
         ...state,
