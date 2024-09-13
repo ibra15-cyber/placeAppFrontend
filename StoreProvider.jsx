@@ -4,10 +4,16 @@ export const Store = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "FETCH_DATA":
+      return {
+        ...state,
+        isLoading: true,
+      };
     case "LOG_IN":
       return {
         ...state,
         userLoggedIn: action.payload,
+        isLoading: false,
       };
     case "LOG_OUT":
       return {
@@ -19,6 +25,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         placeInfo: action.payload,
+        isLoading: false,
       };
 
     default:
@@ -33,6 +40,7 @@ const initialState = {
   placeInfo: localStorage.getItem("placeInfo")
     ? JSON.parse(localStorage.getItem("placeInfo"))
     : null,
+  loading: true,
 };
 
 function StoreProvider({ children }) {

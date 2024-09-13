@@ -43,18 +43,22 @@ function HomeScreen({ toggleSidebar }) {
               paddingTop: "10px",
             }}
           >
-            {places.map((place) => (
-              <Col
-                key={place._id}
-                onClick={() => navigate(`/${place._id}`)}
-                sm={6}
-                md={4}
-                lg={3}
-                style={{ marginBottom: "10px" }}
-              >
-                <PlaceItem place={place} />
-              </Col>
-            ))}
+            {state.isLoading ? (
+              <div>Loading....</div>
+            ) : (
+              places.map((place) => (
+                <Col
+                  key={place._id}
+                  onClick={() => navigate(`/${place._id}`)}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  style={{ marginBottom: "10px" }}
+                >
+                  <PlaceItem place={place} />
+                </Col>
+              ))
+            )}
           </Row>
         </div>
         <div>
