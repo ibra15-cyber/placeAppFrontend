@@ -56,6 +56,7 @@ function Auth() {
     e.preventDefault();
     try {
       if (isSignIn) {
+        dispatch({ type: "FETCH_DATA" });
         const { data } = await axios.post(
           `${backendAPI}/api/users/signin`,
           signInFormData
@@ -66,8 +67,12 @@ function Auth() {
         });
         dispatch({ type: "LOG_IN", payload: data });
         localStorage.setItem("userLoggedIn", JSON.stringify(data));
+        dispatch({ type: "FETCH_END" });
+
         navigate("/");
       } else {
+        dispatch({ type: "FETCH_DATA" });
+
         const { data } = await axios.post(
           `${backendAPI}/api/users/signup`,
           signUpFormData
@@ -78,9 +83,10 @@ function Auth() {
           password: "",
           image: "",
         });
-        navigate("/");
         dispatch({ type: "LOG_IN", payload: data });
         localStorage.setItem("userLoggedIn", JSON.stringify(data));
+        dispatch({ type: "FETCH_END" });
+        navigate("/");
       }
     } catch (err) {
       console.log(err);
