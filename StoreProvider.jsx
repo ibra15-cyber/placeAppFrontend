@@ -2,6 +2,16 @@ import React, { createContext, useReducer } from "react";
 
 export const Store = createContext();
 
+const initialState = {
+  userLoggedIn: localStorage.getItem("userLoggedIn")
+    ? JSON.parse(localStorage.getItem("userLoggedIn"))
+    : null,
+  placeInfo: localStorage.getItem("placeInfo")
+    ? JSON.parse(localStorage.getItem("placeInfo"))
+    : null,
+  loading: true,
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_DATA":
@@ -19,12 +29,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         userLoggedIn: action.payload,
-        isLoading: false,
+        isLoading: true,
       };
     case "LOG_OUT":
       return {
         ...state,
         userLoggedIn: null,
+        isLoading: false,
       };
 
     case "GET_CREATED_PLACE_DETAIL":
@@ -37,16 +48,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-};
-
-const initialState = {
-  userLoggedIn: localStorage.getItem("userLoggedIn")
-    ? JSON.parse(localStorage.getItem("userLoggedIn"))
-    : null,
-  placeInfo: localStorage.getItem("placeInfo")
-    ? JSON.parse(localStorage.getItem("placeInfo"))
-    : null,
-  loading: true,
 };
 
 function StoreProvider({ children }) {

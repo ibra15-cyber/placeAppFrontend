@@ -20,7 +20,7 @@ const MapScreen = () => {
   const mapRef = useRef();
   const searchBoxRef = useRef();
 
-  console.log(placeInfo.location);
+  // console.log(placeInfo.location);
 
   const [center, setCenter] = useState({
     lat: placeInfo.location.lat,
@@ -33,14 +33,15 @@ const MapScreen = () => {
   const fetchGoogleApiKey = async () => {
     try {
       dispatch({ type: "FETCH_DATA" });
-
       const { data } = await axios.get(`${backendAPI}/api/keys/google`, {
         headers: { Authorization: "Bearer " + userLoggedIn.token },
       });
       setGoogleApiKey(data.key);
+      // console.log("data from map", data);
       dispatch({ type: "FETCH_END" });
     } catch (err) {
       console.log(err);
+      dispatch({ type: "FETCH_END" });
     }
   };
 
@@ -92,7 +93,7 @@ const MapScreen = () => {
     // getCurrentUserLocation();
   }, []);
 
-  if (!googleApiKey) {
+  if (state.isLoading) {
     return <div>Loading...</div>;
   }
 

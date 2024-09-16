@@ -140,7 +140,8 @@ function Header({ toggleSidebar }) {
                       ALL PLACES
                     </Nav.Link>
                     <Nav.Link
-                      href="/auth"
+                      as={Link}
+                      to="/auth"
                       style={{
                         border: "1px solid white",
                         margin: "0 5px",
