@@ -22,8 +22,7 @@ function HomeScreen({ toggleSidebar }) {
   const backendAPI = import.meta.env.VITE_API_URL;
 
   const fetchPlaces = async () => {
-    const { data } = await axios.get(`http://localhost:4000/api/places`);
-    // const { data } = await axios.get(`${backendAPI}/api/places/`);
+    const { data } = await axios.get(`${backendAPI}/api/places/`);
     setPlaces(data);
   };
 
