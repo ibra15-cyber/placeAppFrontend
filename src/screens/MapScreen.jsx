@@ -23,8 +23,8 @@ const MapScreen = () => {
   // console.log(placeInfo.location);
 
   const [center, setCenter] = useState({
-    lat: placeInfo.location.lat,
-    lng: placeInfo.location.lng,
+    lat: placeInfo.location.lat || 0,
+    lng: placeInfo.location.lng || 0,
   });
   const [location, setLocation] = useState(center);
 
@@ -97,47 +97,49 @@ const MapScreen = () => {
     <div
       style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
     >
-      <div>
-        <LoadScript libraries={libraries} googleMapsApiKey={googleApiKey}>
-          <GoogleMap
-            mapContainerStyle={{
-              width: "100vw",
-              height: "100vh",
-            }}
-            center={center}
-            zoom={17}
-            onLoad={(map) => (mapRef.current = map)}
-            onIdle={onIdle}
-          >
-            <Marker position={location} />
-            <StandaloneSearchBox
-              onLoad={(ref) => (searchBoxRef.current = ref)}
-              onPlacesChanged={onPlacesChanged}
+      {googleApiKey && (
+        <div>
+          <LoadScript libraries={libraries} googleMapsApiKey={googleApiKey}>
+            <GoogleMap
+              mapContainerStyle={{
+                width: "100vw",
+                height: "100vh",
+              }}
+              center={center}
+              zoom={17}
+              onLoad={(map) => (mapRef.current = map)}
+              onIdle={onIdle}
             >
-              <input
-                type="text"
-                placeholder="Enter location"
-                style={{
-                  boxSizing: "border-box",
-                  border: "1px solid transparent",
-                  width: "240px",
-                  height: "32px",
-                  position: "absolute",
-                  top: "10px",
-                  left: "50%",
-                  padding: "0 12px",
-                  borderRadius: "3px",
-                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-                  fontSize: "14px",
-                  outline: "none",
-                  textOverflow: "ellipsis",
-                  transform: "translateX(-50%)",
-                }}
-              />
-            </StandaloneSearchBox>
-          </GoogleMap>
-        </LoadScript>
-      </div>
+              <Marker position={location} />
+              <StandaloneSearchBox
+                onLoad={(ref) => (searchBoxRef.current = ref)}
+                onPlacesChanged={onPlacesChanged}
+              >
+                <input
+                  type="text"
+                  placeholder="Enter location"
+                  style={{
+                    boxSizing: "border-box",
+                    border: "1px solid transparent",
+                    width: "240px",
+                    height: "32px",
+                    position: "absolute",
+                    top: "10px",
+                    left: "50%",
+                    padding: "0 12px",
+                    borderRadius: "3px",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+                    fontSize: "14px",
+                    outline: "none",
+                    textOverflow: "ellipsis",
+                    transform: "translateX(-50%)",
+                  }}
+                />
+              </StandaloneSearchBox>
+            </GoogleMap>
+          </LoadScript>
+        </div>
+      )}
     </div>
   );
 };
