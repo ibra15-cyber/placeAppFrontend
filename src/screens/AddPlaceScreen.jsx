@@ -36,7 +36,7 @@ const AddPlaceScreen = () => {
     }));
   };
 
-  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+  const backendAPI = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

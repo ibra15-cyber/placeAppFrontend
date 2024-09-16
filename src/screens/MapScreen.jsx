@@ -28,7 +28,7 @@ const MapScreen = () => {
   });
   const [location, setLocation] = useState(center);
 
-  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+  const backendAPI = import.meta.env.VITE_API_URL;
 
   const fetchGoogleApiKey = async () => {
     try {

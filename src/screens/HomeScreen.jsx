@@ -19,10 +19,11 @@ function HomeScreen({ toggleSidebar }) {
   const { userLoggedIn } = state;
   const [places, setPlaces] = useState([]);
 
-  const backendAPI = import.meta.env.VITE_API_URL || "http://localhost:4000";
+  const backendAPI = import.meta.env.VITE_API_URL;
 
   const fetchPlaces = async () => {
-    const { data } = await axios.get(`${backendAPI}/api/places/`);
+    const { data } = await axios.get(`http://localhost:4000/api/places`);
+    // const { data } = await axios.get(`${backendAPI}/api/places/`);
     setPlaces(data);
   };
 
@@ -43,22 +44,18 @@ function HomeScreen({ toggleSidebar }) {
               paddingTop: "10px",
             }}
           >
-            {state.isLoading ? (
-              <div>Loading....</div>
-            ) : (
-              places.map((place) => (
-                <Col
-                  key={place._id}
-                  onClick={() => navigate(`/${place._id}`)}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  style={{ marginBottom: "10px" }}
-                >
-                  <PlaceItem place={place} />
-                </Col>
-              ))
-            )}
+            {places.map((place) => (
+              <Col
+                key={place._id}
+                onClick={() => navigate(`/${place._id}`)}
+                sm={6}
+                md={4}
+                lg={3}
+                style={{ marginBottom: "10px" }}
+              >
+                <PlaceItem place={place} />
+              </Col>
+            ))}
           </Row>
         </div>
         <div>
