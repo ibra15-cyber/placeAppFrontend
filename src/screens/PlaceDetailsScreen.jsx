@@ -66,7 +66,7 @@ const PlaceDetailsScreen = () => {
           <img
             src={place.image}
             alt={place.title}
-            style={{ height: "100%", width: "50%" }}
+            style={{ height: "100%", width: "100%" }}
           />
         </div>
         {place.location && (
