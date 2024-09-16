@@ -93,10 +93,6 @@ const MapScreen = () => {
     // getCurrentUserLocation();
   }, []);
 
-  if (state.isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div
       style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}

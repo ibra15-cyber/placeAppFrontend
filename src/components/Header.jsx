@@ -111,7 +111,8 @@ function Header({ toggleSidebar }) {
                     </Nav.Link>
                     {/* <Nav.Link href="/update">UPDATE</Nav.Link> */}
                     <Nav.Link
-                      href="/add"
+                      as={Link}
+                      to="/add"
                       style={{
                         border: "1px solid white",
                         margin: "0 5px",
