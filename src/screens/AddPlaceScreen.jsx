@@ -40,6 +40,7 @@ const AddPlaceScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { data } = await axios.post(`${backendAPI}/api/places/`, formData);
 
     //get the send back data and set to localStorage

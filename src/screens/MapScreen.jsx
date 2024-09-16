@@ -16,6 +16,7 @@ const MapScreen = () => {
   const { placeInfo } = state;
 
   const [googleApiKey, setGoogleApiKey] = useState("");
+  const [showPlaceholder, setShowPlaceholder] = useState(true); // Manage placeholder visibility
 
   const mapRef = useRef();
   const searchBoxRef = useRef();
@@ -107,7 +108,11 @@ const MapScreen = () => {
               }}
               center={center}
               zoom={17}
-              onLoad={(map) => (mapRef.current = map)}
+              // onLoad={(map) => (mapRef.current = map)}
+              onLoad={(map) => {
+                mapRef.current = map;
+                setShowPlaceholder(false); // Hide placeholder when map loads
+              }}
               onIdle={onIdle}
             >
               <Marker position={location} />
@@ -138,6 +143,35 @@ const MapScreen = () => {
               </StandaloneSearchBox>
             </GoogleMap>
           </LoadScript>
+          {showPlaceholder && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                zIndex: 1,
+              }}
+            >
+              {/* Example SVG placeholder */}
+              <svg
+                xmlns="../../public/placeholder.svg"
+                viewBox="0 0 24 24"
+                width="100"
+                height="100"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="6" x2="12" y2="12" />
+                <line x1="12" y1="12" x2="15" y2="15" />
+              </svg>
+              <p>Loading map...</p>
+            </div>
+          )}
         </div>
       )}
     </div>
