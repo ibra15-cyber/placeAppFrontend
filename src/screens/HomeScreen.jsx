@@ -23,6 +23,7 @@ function HomeScreen({ toggleSidebar }) {
 
   const fetchPlaces = async () => {
     const { data } = await axios.get(`${backendAPI}/api/places/`);
+    console.log(data);
     setPlaces(data);
   };
 
@@ -43,18 +44,19 @@ function HomeScreen({ toggleSidebar }) {
               paddingTop: "10px",
             }}
           >
-            {places.map((place) => (
-              <Col
-                key={place._id}
-                onClick={() => navigate(`/${place._id}`)}
-                sm={6}
-                md={4}
-                lg={3}
-                style={{ marginBottom: "10px" }}
-              >
-                <PlaceItem place={place} />
-              </Col>
-            ))}
+            {places &&
+              places.map((place) => (
+                <Col
+                  key={place._id}
+                  onClick={() => navigate(`/${place._id}`)}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  style={{ marginBottom: "10px" }}
+                >
+                  <PlaceItem place={place} />
+                </Col>
+              ))}
           </Row>
         </div>
         <div>
