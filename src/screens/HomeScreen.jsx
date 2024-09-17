@@ -23,7 +23,7 @@ function HomeScreen({ toggleSidebar }) {
 
   const fetchPlaces = async () => {
     const { data } = await axios.get(`${backendAPI}/api/places/`);
-    console.log(data);
+    // console.log(data);
     setPlaces(data);
   };
 
