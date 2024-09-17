@@ -34,9 +34,7 @@ const MapScreen = () => {
   const fetchGoogleApiKey = async () => {
     try {
       dispatch({ type: "FETCH_DATA" });
-      const { data } = await axios.get(`${backendAPI}/api/keys/google`, {
-        headers: { Authorization: "Bearer " + userLoggedIn.token },
-      });
+      const { data } = await axios.get(`${backendAPI}/api/keys/google`);
       setGoogleApiKey(data.key);
       // console.log("data from map", data);
       dispatch({ type: "FETCH_END" });
@@ -93,6 +91,11 @@ const MapScreen = () => {
     fetchGoogleApiKey();
     // getCurrentUserLocation();
   }, []);
+
+  //use this to restrict rendering the whole page
+  // if (!userLoggedIn) {
+  //   return <div>You have to login to see place location....</div>;
+  // }
 
   return (
     <div
