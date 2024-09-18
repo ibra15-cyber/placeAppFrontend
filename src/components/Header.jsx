@@ -59,7 +59,7 @@ function Header({ toggleSidebar }) {
             display: "inline-flex",
           }}
         >
-          <div>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Button
               variant="dark"
               onClick={toggleSidebar}
