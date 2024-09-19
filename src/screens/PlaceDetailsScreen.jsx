@@ -12,7 +12,7 @@ const PlaceDetailsScreen = () => {
   const { userLoggedIn } = state;
   const [place, setPlace] = useState({});
 
-  // console.log(userLoggedIn);
+  console.log(userLoggedIn);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ const PlaceDetailsScreen = () => {
             </h3>
             <p>Latitude: {place.location.lat}</p>
             <p>Longitude: {place.location.lng}</p>
-            <p>Created by: {place.creator}</p>
+            <p>Created by: {userLoggedIn.name}</p>
             <p>Created at: {new Date(place.createdAt).toLocaleDateString()}</p>
           </div>
         )}
