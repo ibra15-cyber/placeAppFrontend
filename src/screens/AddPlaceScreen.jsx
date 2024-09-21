@@ -41,9 +41,7 @@ const AddPlaceScreen = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { data } = await axios.post(`${backendAPI}/api/places/`, formData, {
-      headers: { Authorization: `Bearer ${userLoggedIn.token}` },
-    });
+    const { data } = await axios.post(`${backendAPI}/api/places/`, formData);
 
     //get the send back data and set to localStorage
     dispatch({ type: "GET_CREATED_PLACE_DETAIL", payload: data });
