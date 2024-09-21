@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div style={{}}>
+        <div style={{ height: "100vh" }}>
           <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
           <div className={`content ${isOpen ? "active" : ""}`} style={{}}>
             <Header toggleSidebar={toggleSidebar} />
