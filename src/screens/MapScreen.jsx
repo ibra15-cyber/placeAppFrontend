@@ -99,7 +99,12 @@ const MapScreen = () => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "10px",
+        height: "100vh",
+      }}
     >
       {googleApiKey && (
         <div>
