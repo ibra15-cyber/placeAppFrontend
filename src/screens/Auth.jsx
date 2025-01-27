@@ -50,7 +50,7 @@ function Auth() {
     setSignIn((prev) => !prev);
   };
 
-  const backendAPI = import.meta.env.VITE_API_URL;
+  const backendAPI = import.meta.env.VITE_API_URL_SB;
 
   const submitInputHandler = async (e) => {
     e.preventDefault();
@@ -61,6 +61,7 @@ function Auth() {
           `${backendAPI}/api/users/signin`,
           signInFormData
         );
+        console.log(data);
         setSignInFormData({
           email: "",
           password: "",
@@ -75,7 +76,13 @@ function Auth() {
 
         const { data } = await axios.post(
           `${backendAPI}/api/users/signup`,
-          signUpFormData
+          signUpFormData,
+          {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyOEBnbWFpbC5jb20iLCJpYXQiOjE3MzQyNDQyNjQsImV4cCI6MTczNDI0NTcwNH0.XbIju2MhWkcGElbNiQgRs0HEdk0JGB8K_yxt6va1KLs",
+            },
+          }
         );
         setSignUpFormData({
           name: "",
